@@ -371,6 +371,35 @@ select {
 .submit-btn:hover {
     background: #218838;
 }
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000000;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.map-container {
+    flex: 1;
+}
+
+.footer-info {
+    flex: 2;
+    text-align: center;
+}
+
+.social-icons i {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
 
     </style>
 </head>
@@ -507,13 +536,30 @@ select {
     
    
     <footer class="footer">
-        <p>&copy; 2024 MSA. All Rights Reserved.</p>
-        <div class="social-icons">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-tiktok"></i>
+        <div class="footer-content">
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.8908378113947!2d104.83901447452676!3d11.55968274425941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31094f4adc5fafd9%3A0x83921113a8bbf43f!2sMM%20Mobile%20Phone%20Shop!5e0!3m2!1sen!2skh!4v1740229454004!5m2!1sen!2skh" 
+                    width="300" 
+                    height="200" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 MSA. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
         </div>
     </footer>
+    
+    
  <script>
     function openBookingForm() {
         document.getElementById("booking-modal").style.display = "block";
