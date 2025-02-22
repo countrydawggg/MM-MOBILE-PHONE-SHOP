@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        .order-summary {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f1f1f1;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            background: #111211;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #737d75;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Checkout</h2>
+        
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="order-items"></div>
+            <p class="total">Total: <span id="total-price">$0.00</span></p>
+        </div>
+
+        <h3>Customer Information</h3>
+        <input type="text" id="customer-name" placeholder="Enter your name" required>
+        <input type="text" id="customer-phone" placeholder="Enter your phone number" required>
+        <input type="text" id="customer-address" placeholder="Enter delivery address" required>
+
+        <div id="phone-model-container" class="hidden">
+            <h3>Phone Model</h3>
+            <input type="text" id="phone-model" placeholder="Enter your phone model">
+        </div>
+        
+        <h3>Payment Method</h3>
+        <select id="payment-method">
+            <option value="cash">Cash on Delivery</option>
+            <option value="aba">ABA</option>
+        </select>
+
+        <h3>Additional Message</h3>
+        <textarea id="customer-message" placeholder="Enter any additional instructions or messages (optional)"></textarea>
+
+        <button id="confirm-order">Confirm Order</button>
+    </div>
+
+    <script>
+        emailjs.init("arfW1gyZXkzZflgpJ"); // Replace with your EmailJS Public Key
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let orderItemsContainer = document.getElementById('order-items');
+            let totalPrice = 0;
+            let phoneModelContainer = document.getElementById("phone-model-container");
+
+            if (cart.length === 0) {
+                orderItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+            } else {
+                cart.forEach(item => {
+                    let productElement = document.createElement('div');
+                    productElement.classList.add('product-item');
+                    productElement.innerHTML = `
+                        <span>${item.name} (x${item.quantity})</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    `;
+                    orderItemsContainer.appendChild(productElement);
+                    totalPrice += item.price * item.quantity;
+
+                    if (item.name.toLowerCase().includes("casing")) {
+                        phoneModelContainer.classList.remove("hidden");
+                    }
+                });
+                document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+            }
+        });
+
+        document.getElementById('confirm-order').addEventListener('click', function () {
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+            const paymentMethod = document.getElementById('payment-method').value;
+            const phoneModel = document.getElementById('phone-model').value.trim();
+            const message = document.getElementById('customer-message').value.trim();
+            const total = document.getElementById('total-price').textContent;
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (!name || !phone || !address) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            let orderItems = cart.map(item => `${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join("\n");
+
+            let emailParams = {
+                name: name,
+                phone: phone,
+                address: address,
+                payment: paymentMethod,
+                message: message || "N/A",
+                total: total,
+                order_items: orderItems
+            };
+
+            emailjs.send("service_djdhnoi", "template_ta8cfan", emailParams)
+                .then(response => {
+                    alert("Order sent successfully to masitamaramsa@gmail.com!");
+                    localStorage.removeItem('cart'); 
+                })
+                .catch(error => {
+                    alert("Error sending order. Please try again.");
+                    console.error(error);
+                });
+        });
+    </script>
+
+</body>
+</html>  

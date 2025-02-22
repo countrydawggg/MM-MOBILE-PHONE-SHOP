@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+ <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div class="logo">gt</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Sale</a>
+            <a href="#">About Us</a>
+        </nav>
+        <div class="icons">
+            <span>🔍</span>
+            <span>👤</span>
+            <span id="cart-icon">🛒 <span id="cart-count">0</span></span>
+        </div>
+    </header>
+    
+    <!-- Cart Container (Hidden by Default) -->
+    <div id="cart-container">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <p class="cart-total">Total: <span id="cart-total">$0.00</span></p>
+        <button id="checkout-btn">Checkout</button>
+    </div>
+    
+    
+    <div class="container">
+        <div class="filters">
+            <div class="filter-group">
+                <label for="availability">Filter:</label>
+                <select id="availability">
+                    <option>Availability</option>
+                </select>
+                <select id="price">
+                    <option>Price</option>
+                </select>
+            </div>
+            <div class="sort">
+                Sort by: Alphabetically, A-Z
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" data-name="Pack me bag" data-price="15">
+                <div class="badge">Sold out</div>
+                <img src="./img/bag1.jpg" alt="Product">
+                <img src="./img/bag.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4 class="productName">Pack me bag</h4>
+                    <div class="price">$15</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card"  data-name="Malaysia perfume" data-price="6">
+                <div class="badge">In stock</div>
+                <img src="./img/perfume.jpg" alt="Product">
+                <img src="./img/perfume1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>Malaysian perfume</h4>
+                    <div class="price">$6</div>
+                    <div class="installment">All kind of flavor</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="Lens" data-price="5">
+                <div class="badge">Sale</div>
+                <img src="./img/lens1.jpg" alt="Product">
+                <img src="./img/lens.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>Lens</h4>
+                    <div class="price">$5</div>
+                    <select class="installment">
+                        <option value="" disabled selected>Select version</option>
+                        <option value="iphone11">iPhone 11</option>
+                        <option value="iphone11pro">iPhone 11 Pro</option>
+                        <option value="iphone11promax">iPhone 11 Pro Max</option>
+                        <option value="iphone12">iPhone 12</option>
+                        <option value="iphone12pro">iPhone 12 Pro</option>
+                        <option value="iphone15promax">iPhone 15 Pro Max</option>
+                    </select>
+                    
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="ID CARD" data-price="2">
+                <div class="badge">In stock</div>
+                <img src="./img/idcard.jpeg" alt="Product">
+                <img src="./img/idcard.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>ID CARD</h4>
+                    <div class="price">$2 </div>
+                    
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="001" data-price="6">
+                <div class="badge">In stock</div>
+                <img src="./img/casing1.jpeg" alt="Product">
+                <img src="./img/casing2.jpeg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>001</h4>
+                    <div class="price">$6</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart" data-name="001" data-price="6">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-name="002" data-price="6">
+                <div class="badge">Sold out</div>
+                <img src="./img/casi.jpeg" alt="Product">
+                <img src="./img/casuu.jpeg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>002</h4>
+                    <div class="price">$6</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart" data-name="002" data-price="6">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-name="003" data-price="5">
+                <div class="badge">In stock</div>
+                <img src="./img/bubu.jpg" alt="Product">
+                <img src="./img/labubu.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>003</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart" data-name="003" data-price="5">Add to Cart</button>
+                </div>
+            </div>
+            
+
+            <div class="product-card" data-name="007" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/casingparent.jpg" alt="Product">
+                <img src="./img/casingtransparent.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>007</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                            <option value="iphone12">iPhone 12</option>
+                            <option value="iphone15">iPhone 15</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart" data-name="007" data-price="5">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Repeat for other products -->
+            
+            <div class="product-card" data-name="008" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/casingfly.jpg" alt="Product">
+                <img src="./img/casingfly1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>008</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart" data-name="008" data-price="5">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Add similar structure for the remaining products (009, 010, 011, 012) -->
+            <div class="product-card" data-name="01" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/cafe.jpg" alt="Product">
+                <img src="./img/cafe1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>013</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="014" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/iron.jpg" alt="Product">
+                <img src="./img/iron1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>014</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                          
+                            <option value="iphone15">iPhone 15</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="015" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/candy.jpg" alt="Product">
+                <img src="./img/candy1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>015</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                     
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-name="016" data-price="4">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/boring1.jpg" alt="Product">
+                <img src="./img/boring.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>016</h4>
+                    <div class="price">$4</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                            <option value="iphone12">iPhone 12</option>
+                         
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="017" data-price="3">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/clear.jpg" alt="Product">
+                <img src="./img/clear1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>017</h4>
+                    <div class="price">$3</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                    
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="018" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/magnetic1.jpg" alt="Product">
+                <img src="./img/magnetic.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>018</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                         
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="019" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/wire1.jpg" alt="Product">
+                <img src="./img/wire.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>019</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                            <option value="iphone12">iPhone 12</option>
+                            <option value="iphone12pro">iPhone 12 Pro</option>
+                            <option value="iphone12promax">iPhone 12 Pro Max</option>
+                       
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="020" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/apple1.jpg" alt="Product">
+                <img src="./img/apple.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>020</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                            <option value="iphone12">iPhone 12</option>
+                        
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="021" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/glitter1.jpg" alt="Product">
+                <img src="./img/glitter2.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>021</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                           
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="022" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/holo.jpg" alt="Product">
+                <img src="./img/holo1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>022</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                           
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="023" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/cool.jpg" alt="Product">
+                <img src="./img/cool1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>023</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                            <option value="iphone11promax">iPhone 11 Pro Max</option>
+                          
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-name="024" data-price="5">
+                <div class="badge">IN STOCK</div>
+                <img src="./img/red.jpg" alt="Product">
+                <img src="./img/red1.jpg" alt="Product Hover" class="hover-img">
+                <div class="product-info">
+                    <h4>024</h4>
+                    <div class="price">$5</div>
+                    <div class="installment">
+                        <label for="phoneModel">Select or Enter Model:</label>
+                        <select id="phoneModel" class="model-select" onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select version</option>
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone11pro">iPhone 11 Pro</option>
+                           
+                            <option value="iphone15">iPhone 15</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="other">Other (Enter manually)</option>
+                        </select>
+                        <input type="text" id="customModel" class="custom-model" placeholder="Enter your model" style="display: none;">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+   
+<script src="script.js"></script>
+</body>
+</html>  
